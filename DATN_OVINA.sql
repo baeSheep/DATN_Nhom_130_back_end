@@ -300,7 +300,7 @@ CREATE TABLE dbo.SUPPORT (
 GO
 
 -- =========================
---  DỮ LIỆU MẪU HỢP LỆ
+--  2 DỮ LIỆU MẪU HỢP LỆ
 -- =========================
 
 -- ROLES
@@ -484,6 +484,8 @@ VALUES
 (3, 4, 5, N'Hoodie rất ấm và dày, form chuẩn như ảnh.', DATEADD(day, -1, GETDATE()));
 GO
 
+ALTER TABLE product_variant
+ADD color_code NVARCHAR(20) NULL;
 
 -- ====================================================
 -- 3. Add FOREIGN KEYS (after parent data seeded)
