@@ -11,4 +11,11 @@ public class CartItemDTO {
     private String productName;
     private Integer quantity;
     private BigDecimal price;
+
+    private String imageUrl;
+    private String size;
+    private String color;
+    private String colorCode;
+    
+    
 }

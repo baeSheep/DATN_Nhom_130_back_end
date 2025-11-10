@@ -578,6 +578,18 @@ ADD color_code NVARCHAR(20) NULL;
 	ALTER TABLE dbo.SUPPORT ADD CONSTRAINT FK_SUPPORT_USER FOREIGN KEY (user_id) REFERENCES dbo.[USER](user_id);
 	GO
 
+ALTER TABLE dbo.CART
+DROP CONSTRAINT IF EXISTS UQ_Cart_UserId; -- b? unique n?u mu?n sessionId dùng chung
+
+ALTER TABLE dbo.CART
+ALTER COLUMN user_id INT NULL; -- cho phép null n?u guest
+
+ALTER TABLE dbo.CART
+ADD session_id NVARCHAR(100) NULL; -- luu sessionId cho guest
+
+CREATE UNIQUE INDEX UQ_Cart_SessionId 
+ON dbo.CART(session_id) 
+WHERE session_id IS NOT NULL; -- d?m b?o m?i sessionId ch? có 1 cart
 
 -- ====================================================
 -- KHÔNG CHẠY TỪ 4-9 PHẦN NÀY TEST NÊN KHÔNG CẦN
