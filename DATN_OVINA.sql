@@ -2,6 +2,8 @@
 -- ====================================================
 -- CHẠY TỪ 1-3 
 -- ====================================================
+ALTER TABLE PRODUCT
+ADD is_deleted BIT NOT NULL DEFAULT 0;
 
 IF DB_ID('DATN_OVINA') IS NOT NULL
 BEGIN

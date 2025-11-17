@@ -1,5 +1,7 @@
 package com.DATN.mapper;
 
+import java.util.Date;
+
 import com.DATN.DTO.CategoryDTO;
 import com.DATN.model.Category;
 
@@ -9,6 +11,8 @@ public class CategoryMapper {
         CategoryDTO dto = new CategoryDTO();
         dto.setCategoryId(category.getCategoryID());
         dto.setCategoryName(category.getCategoryName());
+        dto.setDescription(category.getDescription());
+        dto.setCreatedAt(category.getCreated_at());
         return dto;
     }
 
@@ -17,6 +21,8 @@ public class CategoryMapper {
         Category category = new Category();
         category.setCategoryID(dto.getCategoryId());
         category.setCategoryName(dto.getCategoryName());
+        category.setDescription(dto.getDescription());
+        category.setCreated_at(dto.getCreatedAt() != null ? dto.getCreatedAt() : new Date());
         return category;
     }
 }

@@ -28,6 +28,9 @@ public class Product {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    @Column(name = "is_deleted")
+    private boolean deleted = false;
+    
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -40,10 +43,11 @@ public class Product {
     private List<DiscountProduct> discounts = new ArrayList<>();
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductVariant> variants = new ArrayList<>();
-
-    @OneToMany(mappedBy = "product")
+    
+    @JsonManagedReference
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Image> images = new ArrayList<>();
 
     @OneToMany(mappedBy = "product")
