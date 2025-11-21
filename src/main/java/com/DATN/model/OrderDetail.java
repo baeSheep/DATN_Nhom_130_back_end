@@ -12,10 +12,10 @@ import lombok.*;
 @AllArgsConstructor
 public class OrderDetail {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer orderItemId;
+    @Column(name = "order_detail_id")
+    private Integer orderDetailId;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
@@ -27,9 +27,10 @@ public class OrderDetail {
 
     private Integer quantity;
 
-    @Column(precision = 12, scale = 2)
+    @Column(name = "unit_price")
     private BigDecimal unitPrice;
 
-    @Column(precision = 12, scale = 2)
-    private BigDecimal totalPrice;
+    // subtotal trong DB = unit_price * quantity
+    @Column(name = "subtotal")
+    private BigDecimal subtotal;
 }
