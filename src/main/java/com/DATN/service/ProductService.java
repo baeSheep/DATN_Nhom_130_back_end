@@ -31,12 +31,7 @@ public class ProductService {
                 .toList();
     }
 
-    public List<ProductDTO> getProductsByCategory(Integer categoryId) {
-        return productRepository.findByCategory_CategoryID(categoryId)
-                .stream()
-                .map(ProductMapper::toDTO)
-                .collect(Collectors.toList());
-    }
+   
 
     public List<ProductDTO> getProductsBySubcategory(Integer subcategoryId) {
         return productRepository.findBySubcategory_SubcategoryID(subcategoryId)

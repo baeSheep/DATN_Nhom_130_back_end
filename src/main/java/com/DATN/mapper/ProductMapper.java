@@ -24,8 +24,7 @@ public class ProductMapper {
         	    : new ArrayList<>());
 
         
-        if (entity.getCategory() != null)
-            dto.setCategory(CategoryMapper.toDTO(entity.getCategory()));
+       
         if (entity.getSubcategory() != null)
             dto.setSubcategory(SubcategoryMapper.toDTO(entity.getSubcategory()));
 

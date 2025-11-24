@@ -15,6 +15,7 @@ public class OrderDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "order_detail_id")
     private Integer orderItemId;
 
     @ManyToOne
@@ -30,6 +31,6 @@ public class OrderDetail {
     @Column(precision = 12, scale = 2)
     private BigDecimal unitPrice;
 
-    @Column(precision = 12, scale = 2)
+    @Column(precision = 12, scale = 2, name="[subtotal]")
     private BigDecimal totalPrice;
 }
