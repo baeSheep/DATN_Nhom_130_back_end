@@ -17,6 +17,8 @@ public class OrderDetail {
     @Column(name = "order_detail_id")
     private Integer orderDetailId;
 
+    private Integer orderItemId;
+
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
@@ -33,4 +35,6 @@ public class OrderDetail {
     // subtotal trong DB = unit_price * quantity
     @Column(name = "subtotal")
     private BigDecimal subtotal;
+    @Column(precision = 12, scale = 2, name="[subtotal]")
+    private BigDecimal totalPrice;
 }

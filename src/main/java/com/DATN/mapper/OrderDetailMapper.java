@@ -1,6 +1,9 @@
 package com.DATN.mapper;
 
 import com.DATN.DTO.OrderDetailResponseDTO;
+import java.math.BigDecimal;
+
+import com.DATN.DTO.OrderDetailDTO;
 import com.DATN.model.OrderDetail;
 
 import java.math.BigDecimal;
@@ -27,6 +30,16 @@ public class OrderDetailMapper {
         // Quantity – Unit Price
         dto.setQuantity(item.getQuantity());
         dto.setUnitPrice(item.getUnitPrice());
+     // ✅ Tính tổng tiền cho item
+        if (item.getUnitPrice() != null && item.getQuantity() != null) {
+            dto.setTotalPrice(item.getUnitPrice().multiply(BigDecimal.valueOf(item.getQuantity())));
+        } else {
+            dto.setTotalPrice(BigDecimal.ZERO);
+        }
+
+        return dto;
+    }
+    
 
         // ⭐ Subtotal FIX: lấy từ DB, nếu null thì tự tính
         if (item.getSubtotal() != null) {

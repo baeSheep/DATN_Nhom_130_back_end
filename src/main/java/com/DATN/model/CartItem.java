@@ -24,5 +24,7 @@ public class CartItem {
     private ProductVariant variant;
 
     private Integer quantity;
+    
+    @Column(name = "price_snapshot")
     private BigDecimal unitPrice;
 }

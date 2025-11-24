@@ -8,6 +8,7 @@ import lombok.Data;
 public class ProductVariantDTO {
     private Integer variantId;
     private String color;
+    private String color_code;
     private String size;
     private BigDecimal price;
     private Integer stock;

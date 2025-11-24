@@ -3,6 +3,9 @@ package com.DATN.DTO;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.DATN.model.Category;
+import com.DATN.model.Subcategory;
+
 import lombok.Data;
 
 @Data
@@ -11,7 +14,6 @@ public class ProductDTO {
     private String productName;
     private String description;
     private String status;
-    private CategoryDTO category;
     private SubcategoryDTO subcategory;
     private List<String> imageUrls;
     private List<ProductVariantDTO> variants;
