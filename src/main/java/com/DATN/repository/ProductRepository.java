@@ -10,7 +10,6 @@ import com.DATN.model.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Integer> {
 	
-	List<Product> findByCategory_CategoryID(Integer categoryId);
     List<Product> findBySubcategory_SubcategoryID(Integer subcategoryId);
     List<Product> findByProductNameContainingIgnoreCase(String keyword);
 	

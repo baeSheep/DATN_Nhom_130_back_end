@@ -1,5 +1,6 @@
 package com.DATN.mapper;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,13 @@ public class CartMapper {
             .collect(Collectors.toList());
 
         dto.setItems(items);
+        
+     // --- Tính tổng tiền ---
+        BigDecimal totalAmount = cart.getItems().stream()
+                .map(item -> item.getUnitPrice().multiply(BigDecimal.valueOf(item.getQuantity())))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+            dto.setTotalAmount(totalAmount);
+            
         return dto;
     }
 

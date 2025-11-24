@@ -1,5 +1,7 @@
 package com.DATN.mapper;
 
+import java.math.BigDecimal;
+
 import com.DATN.DTO.OrderDetailDTO;
 import com.DATN.model.OrderDetail;
 
@@ -12,9 +14,16 @@ public class OrderDetailMapper {
         dto.setProductName(item.getVariant().getProduct().getProductName());
         dto.setQuantity(item.getQuantity());
         dto.setUnitPrice(item.getUnitPrice());
-        dto.setTotalPrice(item.getTotalPrice());
+     // ✅ Tính tổng tiền cho item
+        if (item.getUnitPrice() != null && item.getQuantity() != null) {
+            dto.setTotalPrice(item.getUnitPrice().multiply(BigDecimal.valueOf(item.getQuantity())));
+        } else {
+            dto.setTotalPrice(BigDecimal.ZERO);
+        }
+
         return dto;
     }
+    
 
     public static OrderDetail toEntity(OrderDetailDTO dto) {
         if (dto == null) return null;
