@@ -1,5 +1,6 @@
 package com.DATN.model;
 
+import java.util.Date;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -25,8 +26,10 @@ public class Subcategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "subcategory_id")
-    int subcategoryID;
+    int subcategoryId;
     String subcategoryName;
+    @Column(name = "created_at")
+    Date created_at = new Date();
     
     @ManyToOne
     @JoinColumn(name = "category_id")

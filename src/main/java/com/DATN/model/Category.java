@@ -35,7 +35,7 @@ public class Category {
     Date created_at = new Date();
     
     @JsonIgnore
-    @JsonManagedReference
+    // @JsonManagedReference
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Subcategory> subcategoryList;
 }
