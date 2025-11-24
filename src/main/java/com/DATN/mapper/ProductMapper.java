@@ -40,6 +40,17 @@ public class ProductMapper {
                     )).toList()
             );
 
+       
+        if (entity.getSubcategory() != null)
+            dto.setSubcategory(SubcategoryMapper.toDTO(entity.getSubcategory()));
+
+        // Map variants
+        if (entity.getVariants() != null)
+            dto.setVariants(entity.getVariants()
+                    .stream()
+                    .map(ProductVariantMapper::toDTO)
+                    .collect(Collectors.toList()));
+
         dto.setVariants(
                 entity.getVariants().stream()
                     .map(v -> new ProductVariantDTO(

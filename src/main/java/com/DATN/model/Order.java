@@ -4,7 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,6 +16,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "orderId"
+)
 public class Order {
 
     @Id
@@ -22,28 +27,24 @@ public class Order {
     private Integer orderId;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "user_id")
     private Users users;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "address_id")
     private Address address;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
     @ManyToOne
-    @JsonBackReference
     @JoinColumn(name = "discount_id")
     private Discount discount;
 
     private BigDecimal totalAmount;
 
-    private BigDecimal deliveryFee;  // ✅ Phí giao hàng (cập nhật mới)
+    private BigDecimal deliveryFee;
 
     private Integer usedPoints;
 

@@ -78,10 +78,6 @@ public class ProductController {
     	
     }
 
-    @GetMapping("/category/{id}")
-    public List<ProductDTO> getProductsByCategory(@PathVariable Integer id) {
-        return productService.getProductsByCategory(id);
-    }
 
     @GetMapping("/subcategory/{id}")
     public List<ProductDTO> getProductsBySubcategory(@PathVariable Integer id) {

@@ -4,11 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
+import com.DATN.model.Category;
+import com.DATN.model.Subcategory;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -42,5 +40,7 @@ public class ProductDTO {
     @NotEmpty(message = "Phải có ít nhất một ảnh sản phẩm")
     private List<ImageDTO> imageUrls;
     @NotEmpty(message = "Phải có ít nhất một biến thể sản phẩm")
+    private SubcategoryDTO subcategory;
+    private List<String> imageUrls;
     private List<ProductVariantDTO> variants;
 }

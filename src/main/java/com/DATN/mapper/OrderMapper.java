@@ -1,39 +1,44 @@
 package com.DATN.mapper;
 
-import java.util.stream.Collectors;
-
-import com.DATN.DTO.OrderDTO;
+import com.DATN.DTO.OrderResponseDTO;
+import com.DATN.DTO.OrderDetailResponseDTO;
 import com.DATN.model.Order;
 
+import java.util.Collections;
+import java.util.stream.Collectors;
+
 public class OrderMapper {
-    public static OrderDTO toDTO(Order order) {
+
+    public static OrderResponseDTO toDTO(Order order) {
         if (order == null) return null;
-        OrderDTO dto = new OrderDTO();
+
+        OrderResponseDTO dto = new OrderResponseDTO();
+
         dto.setOrderId(order.getOrderId());
         dto.setUserId(order.getUsers() != null ? order.getUsers().getUserID() : null);
-        dto.setOrderStatus(order.getStatus());
+        dto.setAddressId(order.getAddress() != null ? order.getAddress().getAddressId() : null);
+        dto.setDeliveryId(order.getDelivery() != null ? order.getDelivery().getDeliveryId() : null);
+        dto.setDiscountId(order.getDiscount() != null ? order.getDiscount().getDiscountId() : null);
+
+        dto.setOrderDate(order.getOrderDate());
+        dto.setStatus(order.getStatus());
         dto.setTotalAmount(order.getTotalAmount());
         dto.setDeliveryFee(order.getDeliveryFee());
-        dto.setCreatedAt(order.getOrderDate());
-        dto.setDiscountId(order.getDiscount() != null ? order.getDiscount().getDiscountId() : null);
-        dto.setDeliveryId(order.getDelivery() != null ? order.getDelivery().getDeliveryId() : null);
-        if (order.getDetails() != null) {
-            dto.setItems(order.getDetails()
-                .stream()
-                .map(OrderDetailMapper::toDTO)
-                .collect(Collectors.toList()));
-        }
-        return dto;
-    }
+        dto.setUsedPoints(order.getUsedPoints());
+        dto.setPaymentMethod(order.getPaymentMethod());
+        dto.setNote(order.getNote());
 
-    public static Order toEntity(OrderDTO dto) {
-        if (dto == null) return null;
-        Order order = new Order();
-        order.setOrderId(dto.getOrderId());
-        order.setStatus(dto.getOrderStatus());
-        order.setTotalAmount(dto.getTotalAmount());
-        order.setDeliveryFee(dto.getDeliveryFee());
-        order.setOrderDate(dto.getCreatedAt());
-        return order;
+        // ⭐ SAFETY FOR DETAILS LIST
+        if (order.getDetails() != null && !order.getDetails().isEmpty()) {
+            dto.setDetails(
+                    order.getDetails().stream()
+                            .map(det -> (OrderDetailResponseDTO) OrderDetailMapper.toDTO(det))
+                            .collect(Collectors.toList())
+            );
+        } else {
+            dto.setDetails(Collections.emptyList());
+        }
+
+        return dto;
     }
 }
